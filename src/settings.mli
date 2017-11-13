@@ -225,3 +225,8 @@ val echo_errors: string option
    binary-format description of the grammar and automaton. *)
 
 val cmly: bool
+
+
+val coq_dirpath: string
+
+(* This directory path is used in the module name of the imported coq modules *)
