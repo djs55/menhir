@@ -45,3 +45,11 @@ Compile and install as follows:
 ```
 
 If necessary, adjust `PREFIX`, `USE_OCAMLFIND` and `TARGET` as described above.
+
+In order to compile the Coq support library to be used with the Coq backend,
+use the following commands:
+
+```
+       make PREFIX=/usr/local USE_OCAMLFIND=true coq-all
+  sudo make PREFIX=/usr/local coq-install
+```
