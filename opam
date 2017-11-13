@@ -8,16 +8,23 @@ homepage: "http://gallium.inria.fr/~fpottier/menhir/"
 dev-repo: "https://gitlab.inria.fr/fpottier/menhir.git"
 bug-reports: "menhir@inria.fr"
 build: [
-  [make "-f" "Makefile" "PREFIX=%{prefix}%" "USE_OCAMLFIND=true" "docdir=%{doc}%/menhir" "libdir=%{lib}%/menhir" "mandir=%{man}%/man1"]
+  [make "-f" "Makefile" "all" "coq-all" {coq:installed}
+    "PREFIX=%{prefix}%" "USE_OCAMLFIND=true" "docdir=%{doc}%/menhir"
+    "libdir=%{lib}%/menhir" "mandir=%{man}%/man1" ]
 ]
 install: [
-  [make "-f" "Makefile" "install" "PREFIX=%{prefix}%" "docdir=%{doc}%/menhir" "libdir=%{lib}%/menhir" "mandir=%{man}%/man1"]
+  [make "-f" "Makefile" "install" "coq-install" {coq:installed}
+    "PREFIX=%{prefix}%" "docdir=%{doc}%/menhir"
+    "libdir=%{lib}%/menhir" "mandir=%{man}%/man1"]
 ]
 remove: [
-  [make "-f" "Makefile" "uninstall" "PREFIX=%{prefix}%" "docdir=%{doc}%/menhir" "libdir=%{lib}%/menhir" "mandir=%{man}%/man1"]
+  [make "-f" "Makefile" "uninstall" "coq-uninstall" {coq:installed}
+    "PREFIX=%{prefix}%" "docdir=%{doc}%/menhir"
+    "libdir=%{lib}%/menhir" "mandir=%{man}%/man1"]
 ]
 depends: [
   "ocamlfind"
   "ocamlbuild" {build}
 ]
+depopts: [ "coq" ]
 available: [ ocaml-version >= "4.02" ]

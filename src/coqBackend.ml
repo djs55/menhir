@@ -503,9 +503,9 @@ module Run (T: sig end) = struct
       List.iter (fun s -> fprintf f "%s\n\n" s.Stretch.stretch_content)
         Front.grammar.UnparameterizedSyntax.preludes;
 
-    fprintf f "From Coq.Lists Require Import List.\n";
-    fprintf f "From Coq.Numbers.Cyclic.Int31 Require Import Int31.\n";
-    fprintf f "From Coq.Program Require Import Syntax.\n";
+    fprintf f "From Coq Require Import List.\n";
+    fprintf f "From Coq Require Import Int31.\n";
+    fprintf f "From Coq Require Import Syntax.\n";
     fprintf f "From %s Require Import Tuples.\n" Settings.coq_dirpath;
     fprintf f "From %s Require Import Alphabet.\n" Settings.coq_dirpath;
     fprintf f "From %s Require Grammar.\n" Settings.coq_dirpath;

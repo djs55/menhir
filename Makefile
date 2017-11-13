@@ -161,6 +161,9 @@ all:
 	  echo "end" >> $(BUILDDIR)/menhirLib.mli ; \
 	done
 
+coq-all:
+	@ $(MAKE) -C src coq-all
+
 # -------------------------------------------------------------------------
 
 # The files that should be installed as part of menhirLib.
@@ -209,6 +212,9 @@ install:
 	  cp -r $(MANS) $(mandir) ; \
 	fi
 
+coq-install:
+	@ $(MAKE) -C src coq-install
+
 uninstall:
 	@if `$(bindir)/$(MENHIREXE) --suggest-ocamlfind` ; then \
 	  echo 'Un-installing MenhirLib and MenhirSdk via ocamlfind.' ; \
@@ -219,3 +225,6 @@ uninstall:
 	rm -rf $(libdir)
 	rm -rf $(docdir)
 	rm -rf $(mandir)/$(MANS)
+
+coq-uninstall:
+	@ $(MAKE) -C src coq-uninstall

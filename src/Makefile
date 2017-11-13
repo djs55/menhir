@@ -1,4 +1,4 @@
-.PHONY: everyday bootstrap stage1 stage2 stage3 sdk clean
+.PHONY: everyday bootstrap stage1 stage2 stage3 sdk clean coq-all coq-install coq-uninstall
 
 # ----------------------------------------------------------------------------
 # Choose a target.
@@ -90,7 +90,23 @@ sdk:
 	    $(MENHIRSDK)
 
 # ----------------------------------------------------------------------------
+# Building Coq's menhirLib.
+
+coq/Makefile: coq/_CoqProject
+	cd coq; coq_makefile -f _CoqProject -o Makefile
+
+coq-all: coq/Makefile
+	@ $(MAKE) -C coq/ all
+
+coq-install: coq/Makefile
+	@ $(MAKE) -C coq/ install
+
+coq-uninstall: coq/Makefile
+	@ $(MAKE) -C coq/ uninstall
+
+# ----------------------------------------------------------------------------
 # Cleaning up.
 
 clean::
-	rm -rf _stage1 _stage2 _stage3 _sdk
+	@ [ -f coq/Makefile ] && $(MAKE) -C coq/ cleanall
+	rm -rf _stage1 _stage2 _stage3 _sdk coq/Makefile*
