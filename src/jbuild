@@ -1,0 +1,45 @@
+(jbuild_version 1)
+(library
+  ((name menhirLib)
+   (public_name menhirLib)
+   (modules (
+general
+convert
+incrementalEngine
+engineTypes
+engine
+errorReports
+printers
+infiniteArray
+packedIntArray
+rowDisplacement
+linearizedArray
+tableFormat
+inspectionTableFormat
+inspectionTableInterpreter
+tableInterpreter
+staticVersion
+))
+))
+
+(library
+  ((name menhirSdk)
+   (public_name menhirSdk)
+   (modules (
+keyword
+version
+cmly_format
+cmly_api
+cmly_read
+))
+))
+
+(executables
+ ((names (menhir))
+  (modules (menhir))
+))
+
+(install
+ ((section bin)
+  (package menhir)
+  (files ((menhir.exe as menhir)))))
